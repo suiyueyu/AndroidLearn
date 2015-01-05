@@ -4,7 +4,14 @@
           android:versionCode="1"
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="19"/>
-    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
+
+    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+
+
+
+    <application
+            android:allowBackup="false"
+            android:label="@string/app_name" android:icon="@drawable/ic_launcher">
         <activity android:name="MyActivity"
                   android:label="@string/app_name">
             <intent-filter>
@@ -12,5 +19,22 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <receiver android:name=".Receiver2"
+                  android:exported="false"
+                  >
+            <intent-filter>
+                <action android:name="me.eg.BcastRec.show_toast"></action>
+            </intent-filter>
+        </receiver>
+
+
+        <receiver android:name=".Receiver3"
+                  android:exported="false">
+            <intent-filter>
+                <action android:name="me.eg.BcastRec.show_toast"></action>
+            </intent-filter>
+        </receiver>
+
     </application>
 </manifest>
