@@ -34,27 +34,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: me.eg.BcastRec" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="722fc71a-6cd4-4b51-a302-2438702bb7e1" name="Default" comment="练习2-1 广播与接收">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/BcastRec/src/me/eg/BcastRec/Receiver2.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/BcastRec/src/me/eg/BcastRec/Receiver3.java" />
-      <change type="DELETED" beforePath="C:\workspace\AndroidLearn\W5_ Notification_Broadcast_Alarms\out\production\Notification\Notification.unaligned.apk" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/BuildConfig.class" afterPath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/BuildConfig.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/MyActivity$1.class" afterPath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/MyActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/MyActivity.class" afterPath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/MyActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Notification/Notification.apk" afterPath="$PROJECT_DIR$/out/production/Notification/Notification.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/NotificationSubActivity.class" afterPath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/NotificationSubActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/R$attr.class" afterPath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/R$attr.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/R$drawable.class" afterPath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/R$drawable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/R$id.class" afterPath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/R$layout.class" afterPath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/R$string.class" afterPath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/R$string.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/R.class" afterPath="$PROJECT_DIR$/out/production/Notification/me/eg/Notification/R.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BcastRec/AndroidManifest.xml" afterPath="$PROJECT_DIR$/BcastRec/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BcastRec/BcastRec.iml" afterPath="$PROJECT_DIR$/BcastRec/BcastRec.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BcastRec/src/me/eg/BcastRec/MyActivity.java" afterPath="$PROJECT_DIR$/BcastRec/src/me/eg/BcastRec/MyActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notification/Notification.iml" afterPath="$PROJECT_DIR$/Notification/Notification.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+    <list default="true" readonly="true" id="722fc71a-6cd4-4b51-a302-2438702bb7e1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="W5_ Notification_Broadcast_Alarms.iws" />
@@ -128,8 +108,8 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BcastRec/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29116118" vertical-offset="0" max-vertical-offset="1104">
-              <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.20797227" vertical-offset="0" max-vertical-offset="1104">
+              <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
               <folding>
                 <element signature="e#426#444#0" expanded="true" />
               </folding>
@@ -187,6 +167,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="yzcc" />
         <option value="suiyueyu" />
       </list>
     </option>
@@ -648,12 +629,19 @@
       <updated>1420438341074</updated>
       <workItem from="1420438343772" duration="4063000" />
       <workItem from="1420463167636" duration="624000" />
-      <workItem from="1420472600148" duration="2705000" />
+      <workItem from="1420472600148" duration="2786000" />
     </task>
+    <task id="LOCAL-00001" summary="练习2-1 广播与接收">
+      <created>1420475325560</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1420475325560</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7392000" />
+    <option name="totallyTimeSpent" value="7473000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -694,7 +682,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3281768" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928178" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32928178" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32928178" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948717" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1056,8 +1044,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BcastRec/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29116118" vertical-offset="0" max-vertical-offset="1104">
-          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.20797227" vertical-offset="0" max-vertical-offset="1104">
+          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
           <folding>
             <element signature="e#426#444#0" expanded="true" />
           </folding>
