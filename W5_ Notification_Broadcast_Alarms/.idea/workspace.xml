@@ -34,11 +34,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: me.eg.BcastRec" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="722fc71a-6cd4-4b51-a302-2438702bb7e1" name="Default" comment="W5_Notification_Broadcast 2-2 orderedbroadcast">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BcastRec/AndroidManifest.xml" afterPath="$PROJECT_DIR$/BcastRec/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BcastRec/src/me/eg/BcastRec/MyActivity.java" afterPath="$PROJECT_DIR$/BcastRec/src/me/eg/BcastRec/MyActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BcastRec/src/me/eg/BcastRec/Receiver1.java" afterPath="$PROJECT_DIR$/BcastRec/src/me/eg/BcastRec/Receiver1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BcastRec/src/me/eg/BcastRec/Receiver3.java" afterPath="$PROJECT_DIR$/BcastRec/src/me/eg/BcastRec/Receiver3.java" />
+    <list default="true" readonly="true" id="722fc71a-6cd4-4b51-a302-2438702bb7e1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="W5_ Notification_Broadcast_Alarms.iws" />
@@ -681,7 +677,7 @@
       <updated>1420438341074</updated>
       <workItem from="1420438343772" duration="4063000" />
       <workItem from="1420463167636" duration="624000" />
-      <workItem from="1420472600148" duration="4097000" />
+      <workItem from="1420472600148" duration="4106000" />
     </task>
     <task id="LOCAL-00001" summary="练习2-1 广播与接收">
       <created>1420475325560</created>
@@ -701,11 +697,17 @@
       <option name="project" value="LOCAL" />
       <updated>1420475486474</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="W5_Notification_Broadcast 2-2 orderedbroadcast">
+      <created>1420476706196</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1420476706196</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8784000" />
+    <option name="totallyTimeSpent" value="8793000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
