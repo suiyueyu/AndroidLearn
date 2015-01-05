@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/BcastRec/BcastRec.iml" filepath="$PROJECT_DIR$/BcastRec/BcastRec.iml" />
       <module fileurl="file://$PROJECT_DIR$/Notification/Notification.iml" filepath="$PROJECT_DIR$/Notification/Notification.iml" />
       <module fileurl="file://$PROJECT_DIR$/W5_ Notification_Broadcast_Alarms.iml" filepath="$PROJECT_DIR$/W5_ Notification_Broadcast_Alarms.iml" />
     </modules>
