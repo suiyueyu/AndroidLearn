@@ -7,9 +7,6 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
 
-/**
- * Created by boge on 2015/1/5.
- */
 public class Receiver1 extends BroadcastReceiver {
 
     private final String TAG = "Receiver1";
@@ -17,6 +14,12 @@ public class Receiver1 extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.i(TAG,"INTENT RECEIVED");
+
+        if (isOrderedBroadcast()){
+            Log.i(TAG,"Calling abortBroadCast()");
+            abortBroadcast();
+        }
+
 
         Vibrator v = (Vibrator)context
                     .getSystemService(Context.VIBRATOR_SERVICE);

@@ -13,7 +13,7 @@ public class MyActivity extends Activity {
 
     private static final String CUSTOM_INTENT = "me.eg.BcastRec.show_toast";
     private final Receiver1 receiver1 = new Receiver1();
-    private final IntentFilter intentFilter = new IntentFilter(CUSTOM_INTENT);
+
 
 
     /**
@@ -24,14 +24,20 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        registerReceiver(receiver1,intentFilter);
+
+        final IntentFilter intentFilter = new IntentFilter(CUSTOM_INTENT);
+        intentFilter.setPriority(3);
+
+        registerReceiver(receiver1, intentFilter);
 
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendBroadcast(new Intent(CUSTOM_INTENT),
-                        Manifest.permission.VIBRATE);
+//                sendBroadcast(new Intent(CUSTOM_INTENT),
+//                        Manifest.permission.VIBRATE);
+                sendOrderedBroadcast(new Intent(CUSTOM_INTENT)
+                    ,Manifest.permission.VIBRATE);
             }
         });
 

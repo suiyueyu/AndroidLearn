@@ -5,7 +5,7 @@
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="19"/>
 
-    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
 
 
@@ -23,16 +23,16 @@
         <receiver android:name=".Receiver2"
                   android:exported="false"
                   >
-            <intent-filter>
-                <action android:name="me.eg.BcastRec.show_toast"></action>
+            <intent-filter android:priority="10">
+                <action android:name="me.eg.BcastRec.show_toast" />
             </intent-filter>
         </receiver>
 
 
         <receiver android:name=".Receiver3"
                   android:exported="false">
-            <intent-filter>
-                <action android:name="me.eg.BcastRec.show_toast"></action>
+            <intent-filter android:priority="1">
+                <action android:name="me.eg.BcastRec.show_toast" />
             </intent-filter>
         </receiver>
 
