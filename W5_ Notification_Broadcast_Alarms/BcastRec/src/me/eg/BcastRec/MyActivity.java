@@ -1,13 +1,15 @@
 package me.eg.BcastRec;
 
 
-import android.Manifest;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MyActivity extends Activity {
 
@@ -36,8 +38,14 @@ public class MyActivity extends Activity {
             public void onClick(View view) {
 //                sendBroadcast(new Intent(CUSTOM_INTENT),
 //                        Manifest.permission.VIBRATE);
-                sendOrderedBroadcast(new Intent(CUSTOM_INTENT)
-                    ,Manifest.permission.VIBRATE);
+                sendOrderedBroadcast(new Intent(CUSTOM_INTENT), null,
+                        new BroadcastReceiver() {
+                            @Override
+                            public void onReceive(Context context, Intent intent) {
+                                Toast.makeText(context,"Final Result is " + getResultData()
+                                , Toast.LENGTH_SHORT).show();
+                            }
+                        },null,0,null,null);
             }
         });
 
