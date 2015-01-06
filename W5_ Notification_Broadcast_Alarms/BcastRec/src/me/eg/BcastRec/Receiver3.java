@@ -19,11 +19,11 @@ public class Receiver3 extends BroadcastReceiver {
 //        Vibrator v = (Vibrator)context
 //                    .getSystemService(Context.VIBRATOR_SERVICE);
 //        v.vibrate(500);
+//
+//        String tmp = getResultData()== null ? "" : getResultData() ;
+//        tmp = (tmp + " : Receiver3 : ");
 
-        String tmp = getResultData()== null ? "" : getResultData() ;
-        tmp = (tmp + " : Receiver3 : ");
-
-        setResultData(tmp);
+//        setResultData(tmp);
 
         Toast.makeText(context,"Intent received by receive3",Toast.LENGTH_SHORT)
                 .show();

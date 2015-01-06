@@ -22,8 +22,8 @@ public class Receiver2 extends BroadcastReceiver {
 //        v.vibrate(500);
 
 
-        String tmp = getResultData() == null ? "" : getResultData();
-        setResultData(tmp + ":Receiver2 :");
+//        String tmp = getResultData() == null ? "" : getResultData();
+//        setResultData(tmp + ":Receiver2 :");
 
         Toast.makeText(context,"Intent received by receive2",Toast.LENGTH_SHORT)
                 .show();
