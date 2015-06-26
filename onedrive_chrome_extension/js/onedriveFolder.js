@@ -1,14 +1,9 @@
 console.log('onedriveFolder.js is init');
 
 
-$('body').append('<div id="tmp_panel" class="hide"><div id = "tmp_panel_title">' 
+$('body').append('<div id="tmp_panel" class="hide"><div id = "tmp_panel_title">'
 	// + '<a href="#" id="button_append_link">点击我增加</a>' 
-	+ '<a href="#" id="button_autowork">一键(beta)</a>&nbsp;&nbsp;&nbsp;' 
-	+ '<a href="#" id="button_close">显/隐！</a>&nbsp;&nbsp;&nbsp;' 
-	+ '<a href="#" id="button_convert">转换！</a></div><span>list:<br /></span>' 
-	+ '<span id = "link_num">现在共有: 0</span> ' 
-	+ '<div id = "click_hint" style="display:none;">添加成功</div><textarea id="myLinklist"></textarea>' 
-	+ '</div>');
+	+ '<a href="#" id="button_autowork">一键(beta)</a>&nbsp;&nbsp;&nbsp;' + '<a href="#" id="button_close">显/隐！</a>&nbsp;&nbsp;&nbsp;' + '<a href="#" id="button_convert">转换！</a></div><span>list:<br /></span>' + '<span id = "link_num">现在共有: 0</span> ' + '<div id = "click_hint" style="display:none;">添加成功</div><textarea id="myLinklist"></textarea>' + '</div>');
 
 
 // $("div#tmp_panel").css({
@@ -50,3 +45,59 @@ $('myLinklist').css('height', '400px');
 $('a#button_close').click(function() {
 	$('#tmp_panel').toggleClass('hide');
 });
+
+// function autowork_hasNext() {
+// 	autowork_count--;
+// 	if (autowork_count < 0) {
+// 		return false;
+// 	} else {
+// 		return true;
+// 	}
+// }
+
+function autoWork() {
+	// TODO: 发一个消息把cookie清空
+
+
+	// @warning 文件名不要出现非法字符
+	var exportFileName = ($('.BreadcrumbBar-item:last').html() || alert('文件名读取失败'));
+
+	// 在目录页面获取文件数量
+	var fileNum = $('div.List-cell').length;
+	// autowork_count = fileNum;
+
+	var myqueue = new myQueue();
+
+
+	// 从文件菜单进入文件详情
+	myqueue.queue([function() {
+		$('div.List-cell:first a').click();
+		setTimeout(function() {
+			myqueue.dequeue();
+		}, 1000);
+	}])
+
+	for (var i = fileNum; i >= 0; i--) {
+		myqueue.queue([
+			function() {
+				$("span:contains('查看原件')").click();
+				setTimeout(function() {
+					myqueue.dequeue();
+				}, 1000);
+			},
+			function() {
+				$('button.OneUp-flipper--next').click();
+				setTimeout(function() {
+					myqueue.dequeue();
+				}, 100);
+			}
+		]);
+	};
+
+	myqueue.dequeue();
+
+}
+// $('button.OneUp-flipper--next')
+// .OneUp-flipper--available
+
+// $("span:contains('查看原件')")

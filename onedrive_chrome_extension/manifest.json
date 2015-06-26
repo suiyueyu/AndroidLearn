@@ -10,7 +10,7 @@
 		// "run_at":"document_start",
 		"matches": ["https://*.onedrive.live.com/*"],
 		"css":["css/onedriveFolder.css"],
-		"js": ["lib/jquery-2.1.4.min.js", "js/onedriveFolder.js"]
+		"js": ["lib/jquery-2.1.4.min.js","js/mylib.js", "js/onedriveFolder.js"]
 	}],
 
 	"permissions": [
