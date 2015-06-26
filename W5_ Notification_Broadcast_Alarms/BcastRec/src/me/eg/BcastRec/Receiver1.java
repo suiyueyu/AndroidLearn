@@ -20,8 +20,8 @@ public class Receiver1 extends BroadcastReceiver {
         }
 
 
-        String tmp = getResultData() == null ? "" : getResultData();
-        setResultData(tmp + ":Receiver 1: ");
+//        String tmp = getResultData() == null ? "" : getResultData();
+//        setResultData(tmp + ":Receiver 1: ");
 
         Toast.makeText(context,"Intent received by receive1",Toast.LENGTH_SHORT)
                 .show();
