@@ -8,5 +8,8 @@ chrome.runtime.sendMessage({
 	"href": fileLink
 }, function(response) {
 
-
+	console.log("collectImageOriginLinks.js - response");
+	console.log(response);
+	console.log("collectImageOriginLinks.js - response end");
+	
 });

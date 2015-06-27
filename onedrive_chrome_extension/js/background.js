@@ -116,22 +116,27 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 				"value": JSON.stringify(file_array)
 			}, function(value) {
 				console.log(file_array);
+
+
 				chrome.tabs.query({
 					active: true,
 					currentWindow: true
 				}, function(tabs) {
 
 					// 关掉打开的页面
-					// chrome.tabs.remove(tabs[0].id,function () {
+					chrome.tabs.remove(tabs[0].id, function() {
 
-					// })
+					})
+
 				});
 			});
 
 		});
 	} else if (request.action == "checkProcess") {
 		// 检查加入的情况，但是先不写了
-	} else if (request.action == "colleLink") {
+	} 
+	else if (request.action == "colleLink") {
+		console.log('background.js - colleLink');
 		// 从cookie中取出数据
 		var file_array;
 
@@ -145,16 +150,20 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 			} else {
 				file_array = JSON.parse(cookies.value);
 			}
+			console.log(file_array);
 			file_array.png_files.sort(fileLinkSort);
+			sendResponse({"file_array":file_array});
+			console.log('colleLink - over');
 		});
-		sendResponse({"file_array":file_array});
 
-	} else {
 
+	} 
+	else {
+		console.log('background.js - other case');
 	}
 	// var file_key = myStringSplit(request.href);
 
-
+	return true;
 
 	////////////////////////////////////////
 

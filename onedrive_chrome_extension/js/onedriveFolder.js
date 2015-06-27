@@ -3,12 +3,7 @@ console.log('onedriveFolder.js is init');
 
 $('body').append('<div id="tmp_panel" class="hide"><div id = "tmp_panel_title">'
 	// + '<a href="#" id="button_append_link">点击我增加</a>' 
-	+ '<a href="#" id="button_autowork">一键(beta)</a>&nbsp;&nbsp;&nbsp;' 
-	+ '<a href="#" id="button_close">显/隐！</a>&nbsp;&nbsp;&nbsp;' 
-	+ '<a href="#" id="button_convert">转换！</a></div><span>list:<br /></span>'
-	 + '<span id = "link_num">现在共有: 0</span> '
-	  + '<div id = "click_hint" style="display:none;">添加成功</div><textarea id="myLinklist"></textarea>' 
-	   '</div>');
+	+ '<a href="#" id="button_autowork">一键(beta)</a>&nbsp;&nbsp;&nbsp;' + '<a href="#" id="button_close">显/隐！</a>&nbsp;&nbsp;&nbsp;' + '<a href="#" id="button_convert">转换！</a></div><span>list:<br /></span>' + '<span id = "link_num">现在共有: 0</span> ' + '<div id = "click_hint" style="display:none;">添加成功</div><textarea id="myLinklist"></textarea>' + '</div>');
 
 
 // $("div#tmp_panel").css({
@@ -48,7 +43,10 @@ $("#button_append_link").hover(function() {
 $('myLinklist').css('height', '400px');
 
 $('a#button_close').click(function() {
+	event.preventDefault();
+
 	$('#tmp_panel').toggleClass('hide');
+
 });
 
 
@@ -81,15 +79,15 @@ function autoWork() {
 				$("span:contains('查看原件')").click();
 				setTimeout(function() {
 					myqueue.dequeue();
-				}, 1000);
+				}, 500);
 			},
 			function() {
-				chrome.runtime.sendMessage({
-					// 询问后台当前的抓取情况
-					"action": "checkProcess",
-				}, function(response) {
-					// response 包括 pngfile的数量和非pngfile的数量
-				});
+				// chrome.runtime.sendMessage({
+				// 	// 询问后台当前的抓取情况
+				// 	"action": "checkProcess",
+				// }, function(response) {
+				// 	// response 包括 pngfile的数量和非pngfile的数量
+				// });
 
 				$('button.OneUp-flipper--next').click();
 				setTimeout(function() {
@@ -98,37 +96,29 @@ function autoWork() {
 			}
 		]);
 	};
-	myqueue.queue([
-		function() {
-			// 从cookie中收集相关信息
-			chrome.runtime.sendMessage({
-				"action": "colleLink",
-			}, function(response) {
-				// console.log("response:", response);
-			});
-		}
-	]);
 
 	myqueue.queue([
 		function() {
-			// 从cookie中收集相关信息
+			// // 从cookie中收集相关信息
+			// var file_array = Cookies.get('file_array',{domain:'http://2222.moe/'});
+			// console.log(file_array);
+
 			chrome.runtime.sendMessage({
-				"action": "colleLink",
-			}, function(response) {
-				var file_array = response.file_array;
-				// $('#myLinklist').val(file_array);
-				var png_file_array = file_array.
-				
+				"action" : "colleLink"
+			},function (response) {
+				console.log(response);
 			});
-			setTimeout(function() {
-				myqueue.dequeue();
-			}, 500);
 
 		}
 	]);
 	myqueue.dequeue();
 
 }
+
+$('a#button_autowork').click(function() {
+	event.preventDefault();
+	autoWork();
+});
 // $('button.OneUp-flipper--next')
 // .OneUp-flipper--available
 

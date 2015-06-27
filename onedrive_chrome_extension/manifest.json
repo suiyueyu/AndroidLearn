@@ -1,6 +1,6 @@
 {
-	"name": "Omnibox Example",
-	"description": "To use, type 'omnix' plus a search term into the Omnibox.",
+	"name": "vcbs_onedrive_link",
+	"description": "抓取onedrive页面上的链接",
 	"version": "1.1",
 	"content_scripts": [{
 		"matches": ["https://*.livefilestore.com/*"],
@@ -10,7 +10,7 @@
 		// "run_at":"document_start",
 		"matches": ["https://*.onedrive.live.com/*"],
 		"css":["css/onedriveFolder.css"],
-		"js": ["lib/jquery-2.1.4.min.js","js/mylib.js", "js/onedriveFolder.js"]
+		"js": ["lib/jquery-2.1.4.min.js","js/mylib.js","lib/js.cookie.js", "js/onedriveFolder.js"]
 	}],
 
 	"permissions": [
@@ -20,7 +20,7 @@
 		"background"
 	],
 	"background": {
-		"scripts": ["js/background.js"]
+		"scripts": ["lib/jquery-2.1.4.min.js","lib/js.cookie.js","js/background.js"]
 	},
 	"manifest_version": 2
 }
