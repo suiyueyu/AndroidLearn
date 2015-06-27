@@ -1,5 +1,5 @@
 console.log('onedriveFolder.js is init');
-
+var IMG_GROUP_NUM = 3;
 
 $('body').append('<div id="tmp_panel" class="hide"><div id = "tmp_panel_title">'
 	// + '<a href="#" id="button_append_link">点击我增加</a>' 
@@ -56,7 +56,7 @@ function updateLinkNum(PNG_link_num, NOT_PNG_link_num) {
 
 
 function autoWork() {
-	// TODO: 发一个消息把cookie清空
+
 
 	// var exceptionFlag = {
 	// 	"flag":false;
@@ -71,6 +71,19 @@ function autoWork() {
 	// autowork_count = fileNum;
 
 	var myqueue = new myQueue();
+
+	myqueue.queue([function() {
+		// 发一个消息把cookie清空
+		chrome.runtime.sendMessage({
+			"action": "clearCookies"
+		}, function(response) {
+
+		});
+
+		setTimeout(function() {
+			myqueue.dequeue();
+		}, 500);
+	}])
 
 	// 点开所有的图片标签页
 	for (var i = fileNum - 1; i >= 0; i--) {
@@ -99,20 +112,114 @@ function autoWork() {
 
 	myqueue.queue([
 		function() {
-			// // 从cookie中收集相关信息
+			// 从cookie中收集相关信息
 			// var file_array = Cookies.get('file_array',{domain:'http://2222.moe/'});
 			// console.log(file_array);
 
 			chrome.runtime.sendMessage({
-				"action" : "colleLink"
-			},function (response) {
+				"action": "colleLink"
+			}, function(response) {
 				console.log(response);
+				// var file_array = response.file_array;
+
+				var exportText = organizeFileByImgGroupNum(response.file_array, IMG_GROUP_NUM);
+				exportFileName += ".txt";
+				var blob = new Blob([exportText], {
+					type: "text/plain;charset=utf-8"
+				});
+				saveAs(blob, exportFileName);
+				setTimeout(function() {
+					myqueue.dequeue();
+				}, 100);
+
 			});
 
 		}
 	]);
 	myqueue.dequeue();
 
+}
+
+function organizeFileByImgGroupNum(file_array, IMG_GROUP_NUM) {
+	// file_array = {
+	// "png_files": [],
+	// "not_png_files": []
+	// }
+	var resultString = "";
+	var PNGLinkArray = file_array.png_files;
+	var notPNGLinkArray = file_array.not_png_files;
+
+	var groupNum = PNGLinkArray.length / IMG_GROUP_NUM;
+
+	// 将非PNG链接放到最前
+	for (var i = notPNGLinkArray.length - 1; i >= 0; i--) {
+		resultString += notPNGLinkArray[i] + "\r\n";
+	};
+	if (notPNGLinkArray.length > 0) {
+		resultString += "\r\n";
+	}
+
+	if (PNGLinkArray.length % IMG_GROUP_NUM) {
+		console.error("抓取的数量" + PNGLinkArray.length + "不是" + IMG_GROUP_NUM + "的倍数");
+		alert("抓取的数量" + PNGLinkArray.length + "不是" + IMG_GROUP_NUM + "的倍数");
+	};
+
+
+	if (IMG_GROUP_NUM == 3) {
+		// 数组内元素按照 xx s v 出现
+		var link = {
+			xx: "",
+			s: "",
+			v: "",
+		};
+		for (var i = 0; i < groupNum; i++) {
+			link.xx = PNGLinkArray[i * IMG_GROUP_NUM];
+			link.s = PNGLinkArray[i * IMG_GROUP_NUM + 1];
+			link.v = PNGLinkArray[i * IMG_GROUP_NUM + 2];
+
+			// 第一组 xx s
+			resultString += ('[URL=' + link.xx + '][IMG]' + link.s + '[/IMG][/URL] ');
+
+			// 第二组 v s
+			resultString += ('[URL=' + link.v + '][IMG]' + link.s + '[/IMG][/URL]\r\n');
+
+		};
+
+
+	} else if (IMG_GROUP_NUM == 4) {
+		// 数组内元素按照 xx s u v 出现
+		var link = {
+			xx: "",
+			s: "",
+			u: "",
+			v: "",
+		};
+		for (var i = 0; i < groupNum; i++) {
+			link.xx = PNGLinkArray[i * IMG_GROUP_NUM];
+			link.s = PNGLinkArray[i * IMG_GROUP_NUM + 1];
+			link.u = PNGLinkArray[i * IMG_GROUP_NUM + 2];
+			link.v = PNGLinkArray[i * IMG_GROUP_NUM + 2];
+
+			// 第一组 xx s
+			resultString += '[URL=' + link.xx + '][IMG]' + link.s + '[/IMG][/URL] ';
+
+			// 第二组 v s
+			resultString += '[URL=' + link.v + '][IMG]' + link.s + '[/IMG][/URL] ';
+
+			// 第三组 u s
+			resultString += '[URL=' + link.u + '][IMG]' + link.s + '[/IMG][/URL]\r\n';
+
+		};
+
+
+
+	} else {
+		console.error("数组的数量设置有误");
+	}
+
+	$('#myLinklist').val(resultString);
+
+	return resultString;
 }
 
 $('a#button_autowork').click(function() {

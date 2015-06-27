@@ -1,3 +1,6 @@
+var tmpCookieDomain = "http://www.baidu.com/";
+
+
 // 将文件切割成xxxx.png的格式方便比较
 function getFileName(a) {
 
@@ -88,7 +91,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 		chrome.cookies.get({
 			"name": "file_array",
-			"url": "http://2222.moe/"
+			"url": tmpCookieDomain
 		}, function(cookies) {
 			// 第一次则新建数组
 			if (!cookies) {
@@ -112,7 +115,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 			chrome.cookies.set({
 				"name": "file_array",
 				// "key":file_key,
-				"url": "http://2222.moe/",
+				"url": tmpCookieDomain,
 				"value": JSON.stringify(file_array)
 			}, function(value) {
 				console.log(file_array);
@@ -122,11 +125,13 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 					active: true,
 					currentWindow: true
 				}, function(tabs) {
-
 					// 关掉打开的页面
-					chrome.tabs.remove(tabs[0].id, function() {
+					// chrome.tabs.remove(tabs[0].id, function() {
 
-					})
+					// });
+					chrome.tabs.remove(sender.tab.id, function() {
+
+					});
 
 				});
 			});
@@ -134,15 +139,29 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 		});
 	} else if (request.action == "checkProcess") {
 		// 检查加入的情况，但是先不写了
-	} 
-	else if (request.action == "colleLink") {
+	} else if (request.action == "clearCookies") {
+		// 初始化，清空cookies
+		var file_array = {
+			"png_files": [],
+			"not_png_files": []
+
+		};
+		chrome.cookies.set({
+			"name": "file_array",
+			// "key":file_key,
+			"url": tmpCookieDomain,
+			"value": JSON.stringify(file_array)
+		}, function(value) {
+
+		});
+	} else if (request.action == "colleLink") {
 		console.log('background.js - colleLink');
 		// 从cookie中取出数据
 		var file_array;
 
 		chrome.cookies.get({
 			"name": "file_array",
-			"url": "http://2222.moe/"
+			"url": tmpCookieDomain
 		}, function(cookies) {
 			// 第一次则新建数组
 			if (!cookies) {
@@ -152,17 +171,28 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 			}
 			console.log(file_array);
 			file_array.png_files.sort(fileLinkSort);
-			sendResponse({"file_array":file_array});
+			sendResponse({
+				"file_array": file_array
+			});
 			console.log('colleLink - over');
+
+			chrome.tabs.update(sender.tab.id, {
+				"highlighted": true
+			}, function(tab) {
+
+			});
 		});
 
 
-	} 
-	else {
+	} else {
 		console.log('background.js - other case');
 	}
 	// var file_key = myStringSplit(request.href);
 
+	// 注意：如果有多个页面同时监听 onMessage 事件，
+	// 那么只有第一个调用 sendResponse() 的页面可以成功返回响应信息，其它的都会被忽略。
+	// 小技巧：当事件监听器返回时函数就不可用了，
+	// 不过如果让函数 return: true 的话，可以让该函数异步响应，直到调用 sendResponse 后才结束，具体说明请见文档。
 	return true;
 
 	////////////////////////////////////////

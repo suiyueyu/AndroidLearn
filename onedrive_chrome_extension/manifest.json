@@ -9,8 +9,8 @@
 	}, {
 		// "run_at":"document_start",
 		"matches": ["https://*.onedrive.live.com/*"],
-		"css":["css/onedriveFolder.css"],
-		"js": ["lib/jquery-2.1.4.min.js","js/mylib.js","lib/js.cookie.js", "js/onedriveFolder.js"]
+		"css": ["css/onedriveFolder.css"],
+		"js": ["lib/jquery-2.1.4.min.js", "lib/FileSaver.js", "lib/Blob.js", "js/mylib.js", "lib/js.cookie.js", "js/onedriveFolder.js"]
 	}],
 
 	"permissions": [
@@ -20,7 +20,7 @@
 		"background"
 	],
 	"background": {
-		"scripts": ["lib/jquery-2.1.4.min.js","lib/js.cookie.js","js/background.js"]
+		"scripts": ["lib/jquery-2.1.4.min.js", "lib/js.cookie.js", "js/background.js"]
 	},
 	"manifest_version": 2
 }
