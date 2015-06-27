@@ -10,31 +10,45 @@ function myStringSplit(a) {
 }
 
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
-	var file_key = myStringSplit(request.href);
-	var file_array = JSON.parse(chrome.cookies.get({
+	// var file_key = myStringSplit(request.href);
+
+	// 从cookie中取出数据
+	var file_array;
+
+	chrome.cookies.get({
 		"name": "file_array",
-		"url":"http://2222.moe/"
-	}, function (cookies) {
-		
-	}));
-	if (file_array === undefined) {
-		file_array = {
-			"png_files": [],
-			"not_png_files": []
-		};
+		"url": "http://2222.moe/"
+	}, function(cookies) {
+		// 新建数组
+		if (!cookies) {
+			file_array = {
+				"png_files": [],
+				"not_png_files": []
 
-	};
-	file_array.png_files.push(request.href);
+			}
+		} else {
+			file_array = JSON.parse(cookies.value);
+		}
+		file_array.png_files.push(request.href);
 
-	chrome.cookies.set({
-		"name": "file_array"
+
+		chrome.cookies.set({
+			"name": "file_array",
 			// "key":file_key,
-		"url": "http://2222.moe/",
-		"value": request.href
-	}, function(value) {
-		console.log(request);
-		console.log(myFileArray);
-	})
+			"url": "http://2222.moe/",
+			"value": JSON.stringify(file_array)
+		}, function(value) {
+			console.log(request);
+			console.log(file_array);
+			// console.log(myFileArray);
+		});
+	});
+
+
+	////////////////////////////////////////
+
+	/////////////////////////////////////
+
 });
 
 

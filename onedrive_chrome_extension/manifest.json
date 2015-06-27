@@ -4,9 +4,15 @@
 	"version": "1.1",
 	"content_scripts": [{
 		"matches": ["https://*.livefilestore.com/*"],
-
-		"js": ["myscript.js"]
+		"run_at": "document_start",
+		"js": ["js/myscript.js"]
+	}, {
+		// "run_at":"document_start",
+		"matches": ["https://*.onedrive.live.com/*"],
+		"css":["css/onedriveFolder.css"],
+		"js": ["lib/jquery-2.1.4.min.js","js/mylib.js", "js/onedriveFolder.js"]
 	}],
+
 	"permissions": [
 		"*://*/*",
 		// "https://*/*",
@@ -14,7 +20,10 @@
 		"background"
 	],
 	"background": {
-		"scripts": ["background.js"]
+		"scripts": ["js/background.js"]
 	},
 	"manifest_version": 2
 }
+
+// "lib/FileSaver.js", "lib/Blob.js", 
+// ,"http://www.onedrive.live.com/*"
