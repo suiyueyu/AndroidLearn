@@ -5,7 +5,7 @@
 	"content_scripts": [{
 		"matches": ["https://*.livefilestore.com/*"],
 		"run_at": "document_start",
-		"js": ["js/myscript.js"]
+		"js": ["js/collectImageOriginLink.js"]
 	}, {
 		// "run_at":"document_start",
 		"matches": ["https://*.onedrive.live.com/*"],

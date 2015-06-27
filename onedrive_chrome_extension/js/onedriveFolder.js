@@ -3,7 +3,12 @@ console.log('onedriveFolder.js is init');
 
 $('body').append('<div id="tmp_panel" class="hide"><div id = "tmp_panel_title">'
 	// + '<a href="#" id="button_append_link">点击我增加</a>' 
-	+ '<a href="#" id="button_autowork">一键(beta)</a>&nbsp;&nbsp;&nbsp;' + '<a href="#" id="button_close">显/隐！</a>&nbsp;&nbsp;&nbsp;' + '<a href="#" id="button_convert">转换！</a></div><span>list:<br /></span>' + '<span id = "link_num">现在共有: 0</span> ' + '<div id = "click_hint" style="display:none;">添加成功</div><textarea id="myLinklist"></textarea>' + '</div>');
+	+ '<a href="#" id="button_autowork">一键(beta)</a>&nbsp;&nbsp;&nbsp;' 
+	+ '<a href="#" id="button_close">显/隐！</a>&nbsp;&nbsp;&nbsp;' 
+	+ '<a href="#" id="button_convert">转换！</a></div><span>list:<br /></span>'
+	 + '<span id = "link_num">现在共有: 0</span> '
+	  + '<div id = "click_hint" style="display:none;">添加成功</div><textarea id="myLinklist"></textarea>' 
+	   '</div>');
 
 
 // $("div#tmp_panel").css({
@@ -46,38 +51,31 @@ $('a#button_close').click(function() {
 	$('#tmp_panel').toggleClass('hide');
 });
 
-// function autowork_hasNext() {
-// 	autowork_count--;
-// 	if (autowork_count < 0) {
-// 		return false;
-// 	} else {
-// 		return true;
-// 	}
-// }
+
+function updateLinkNum(PNG_link_num, NOT_PNG_link_num) {
+	$('#link_num').html("当前共有PNG图片:&nbsp" + PNG_link_num + "&nbsp&nbsp&nbsp&nbsp" + "非PNG图片:&nbsp" + NOT_PNG_link_num);
+}
+
 
 function autoWork() {
 	// TODO: 发一个消息把cookie清空
 
+	// var exceptionFlag = {
+	// 	"flag":false;
+	// 	"detail":"";
+	// }
 
 	// @warning 文件名不要出现非法字符
 	var exportFileName = ($('.BreadcrumbBar-item:last').html() || alert('文件名读取失败'));
 
-	// 在目录页面获取文件数量
+	// 获取文件数量
 	var fileNum = $('div.List-cell').length;
 	// autowork_count = fileNum;
 
 	var myqueue = new myQueue();
 
-
-	// 从文件菜单进入文件详情
-	myqueue.queue([function() {
-		$('div.List-cell:first a').click();
-		setTimeout(function() {
-			myqueue.dequeue();
-		}, 1000);
-	}])
-
-	for (var i = fileNum; i >= 0; i--) {
+	// 点开所有的图片标签页
+	for (var i = fileNum - 1; i >= 0; i--) {
 		myqueue.queue([
 			function() {
 				$("span:contains('查看原件')").click();
@@ -86,6 +84,13 @@ function autoWork() {
 				}, 1000);
 			},
 			function() {
+				chrome.runtime.sendMessage({
+					// 询问后台当前的抓取情况
+					"action": "checkProcess",
+				}, function(response) {
+					// response 包括 pngfile的数量和非pngfile的数量
+				});
+
 				$('button.OneUp-flipper--next').click();
 				setTimeout(function() {
 					myqueue.dequeue();
@@ -93,7 +98,34 @@ function autoWork() {
 			}
 		]);
 	};
+	myqueue.queue([
+		function() {
+			// 从cookie中收集相关信息
+			chrome.runtime.sendMessage({
+				"action": "colleLink",
+			}, function(response) {
+				// console.log("response:", response);
+			});
+		}
+	]);
 
+	myqueue.queue([
+		function() {
+			// 从cookie中收集相关信息
+			chrome.runtime.sendMessage({
+				"action": "colleLink",
+			}, function(response) {
+				var file_array = response.file_array;
+				// $('#myLinklist').val(file_array);
+				var png_file_array = file_array.
+				
+			});
+			setTimeout(function() {
+				myqueue.dequeue();
+			}, 500);
+
+		}
+	]);
 	myqueue.dequeue();
 
 }
