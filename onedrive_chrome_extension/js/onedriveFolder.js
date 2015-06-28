@@ -1,38 +1,35 @@
 console.log('onedriveFolder.js is init');
-var IMG_GROUP_NUM = 3;
-
-$('body').append('<div id="tmp_panel" class="hide"><div id = "tmp_panel_title">'
-	// + '<a href="#" id="button_append_link">点击我增加</a>' 
-	+ '<a href="#" id="button_autowork">一键(beta)</a>&nbsp;&nbsp;&nbsp;' + '<a href="#" id="button_close">显/隐！</a>&nbsp;&nbsp;&nbsp;' + '<a href="#" id="button_convert">转换！</a></div><span>list:<br /></span>' + '<span id = "link_num">现在共有: 0</span> ' + '<div id = "click_hint" style="display:none;">添加成功</div><textarea id="myLinklist"></textarea>' + '</div>');
 
 
-// $("div#tmp_panel").css({
-// 	"background": '#f6f6f6',
-// 	"position": 'absolute',
-// 	"width": '300px',
-// 	"height": '200px',
-// 	"z-index": '999',
-// 	"right": '20px',
-// 	"bottom": '20px'
-// });
+$('body').append(
+	'<div id="tmp_panel" class="">'
+		+'<div id="tmp_panel_title">'
+			+'<div class="onoffswitch onoffswitch-checked">'
+			    +'<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>'
+			    +'<label class="onoffswitch-label" for="myonoffswitch">'
+			        +'<span class="onoffswitch-inner"></span>'
+			        +'<span class="onoffswitch-switch"></span>'
+		    	+'</label>'
+			+'</div>'
+			+'<a href="#" id="button_autowork">一键(beta)</a>&nbsp;&nbsp;&nbsp;'
+			+'<a href="#" id="button_close" class="">显/隐！</a>&nbsp;&nbsp;&nbsp;'
+		+'</div>'
+		+'<span>list:<br></span>'
+		+'<span id="link_num">现在共有: 0</span> '
+		+'<div id="click_hint" style="display:none;">添加成功</div>'
+		+'<textarea id="myLinklist"></textarea>'
+	+'</div>'
+	);
 
-// $('#tmp_panel_title')
-// 	// .css('background','#0071bc');
-// 	.css('border-bottom', '1px black solid')
-// 	.css('padding', '10px 0 10px 5px');
 
 
-// $("#button_append_link")
-// 	.css("background", "#f6f6f6")
-// 	.css("height", "100%");
-
-// $('#click_hint')
-// 	.css('background', '#0071bc')
-// 	.css('text-align', 'center')
-// 	.css('color', 'white')
-// 	.height('30px')
-// 	.css('padding-top', '10px');
-
+// <div class="onoffswitch">
+//     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+//     <label class="onoffswitch-label" for="myonoffswitch">
+//         <span class="onoffswitch-inner"></span>
+//         <span class="onoffswitch-switch"></span>
+//     </label>
+// </div>
 
 $("#button_append_link").hover(function() {
 	$("#button_append_link").css("background-color", "#");
@@ -49,11 +46,21 @@ $('a#button_close').click(function() {
 
 });
 
+$('.onoffswitch-label').click(function() {
+	$(this).parent().toggleClass('onoffswitch-checked');
+});
 
 function updateLinkNum(PNG_link_num, NOT_PNG_link_num) {
 	$('#link_num').html("当前共有PNG图片:&nbsp" + PNG_link_num + "&nbsp&nbsp&nbsp&nbsp" + "非PNG图片:&nbsp" + NOT_PNG_link_num);
 }
 
+function getIMGGroupNum () {
+	if($('div.onoffswitch').hasClass('onoffswitch-checked')){
+		return 3;
+	}else{
+		return 4;
+	}
+}
 
 function autoWork() {
 
@@ -92,7 +99,7 @@ function autoWork() {
 				$("span:contains('查看原件')").click();
 				setTimeout(function() {
 					myqueue.dequeue();
-				}, 500);
+				}, 1500);
 			},
 			function() {
 				// chrome.runtime.sendMessage({
@@ -122,7 +129,7 @@ function autoWork() {
 				console.log(response);
 				// var file_array = response.file_array;
 
-				var exportText = organizeFileByImgGroupNum(response.file_array, IMG_GROUP_NUM);
+				var exportText = organizeFileByImgGroupNum(response.file_array, getIMGGroupNum());
 				exportFileName += ".txt";
 				var blob = new Blob([exportText], {
 					type: "text/plain;charset=utf-8"
